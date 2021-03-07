@@ -597,6 +597,7 @@
 # Создаем html файлы:
 # ex_mail.html
 # about.html
+###################################################
 # from jinja2 import FileSystemLoader, Environment
 
 # file_loader = FileSystemLoader('templates')
@@ -608,28 +609,17 @@
 
 # print(output)
 
+#####################################################
 
-# about.html
-# {% extends 'layout/deffault.html' %}
-# {% block title %}О сайте{% endblock %}
-# {% block content %}
-# {{super()}}
-# <h1>{{self.title()}}</h1>
-# <p>Классный сайт, если его доделать</p>
-# {%endblock %}
+from jinja2 import FileSystemLoader, Environment
 
-#default.html
-# <!DOCTYPE html>
-# <html lang="en">
-# <head>
-#     <meta charset="UTF-8">
-#     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-#     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-#     <title>{%block title %} {% endblock %}</title>
-# </head>
-# <body>
-#     {% block content %}
-#         Блок контента
-#     {% endblock content %}
-# </body>
-# </html>
+subs = ["Математика", "Физика", "Информатика", "Русский"]
+
+file_loader = FileSystemLoader('templates')
+env = Environment(loader=file_loader)
+
+template = env.get_template('about.html')
+
+output = template.render(list_table = subs)
+
+print(output)
